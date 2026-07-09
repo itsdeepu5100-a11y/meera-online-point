@@ -1,0 +1,431 @@
+/* ===========================
+   Meera Online Point
+   Admin Panel V1.0
+=========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f8ff;
+color:#222;
+}
+
+/* Header */
+
+.admin-header{
+
+background:#1565C0;
+
+color:#fff;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px 8%;
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.logo img{
+
+width:55px;
+
+height:55px;
+
+border-radius:50%;
+
+background:#fff;
+
+padding:4px;
+
+}
+
+.logo h2{
+
+font-size:24px;
+
+}
+
+.logo p{
+
+font-size:13px;
+
+opacity:.9;
+
+}
+
+.admin-user{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.admin-user button{
+
+background:#fff;
+
+color:#1565C0;
+
+border:none;
+
+padding:10px 20px;
+
+border-radius:8px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.admin-user button:hover{
+
+background:#e3f2fd;
+
+}
+
+/* Dashboard */
+
+.dashboard{
+
+padding:40px 8%;
+
+}
+
+.dashboard h1{
+
+margin-bottom:25px;
+
+color:#1565C0;
+
+}
+
+.dashboard-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:25px;
+
+}
+
+.dashboard-card{
+
+background:#fff;
+
+padding:30px;
+
+border-radius:16px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+text-align:center;
+
+transition:.3s;
+
+}
+
+.dashboard-card:hover{
+
+transform:translateY(-6px);
+
+}
+
+.dashboard-card h2{
+
+font-size:42px;
+
+color:#1565C0;
+
+margin-bottom:10px;
+
+}
+
+.dashboard-card p{
+
+font-size:17px;
+
+color:#555;
+
+}
+/* ===========================
+   Add Order Form
+=========================== */
+
+.order-box{
+
+background:#fff;
+
+margin:40px 8%;
+
+padding:35px;
+
+border-radius:18px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.order-box h2{
+
+color:#1565C0;
+
+margin-bottom:20px;
+
+}
+
+.order-box form{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:18px;
+
+}
+
+.order-box input,
+.order-box select{
+
+padding:14px;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+font-size:15px;
+
+outline:none;
+
+transition:.3s;
+
+}
+
+.order-box input:focus,
+.order-box select:focus{
+
+border-color:#1565C0;
+
+box-shadow:0 0 8px rgba(21,101,192,.2);
+
+}
+
+.order-box button{
+
+background:#1565C0;
+
+color:#fff;
+
+border:none;
+
+padding:15px;
+
+border-radius:10px;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.order-box button:hover{
+
+background:#0d47a1;
+
+}
+
+/* ===========================
+   Search Box
+=========================== */
+
+.search-box{
+
+margin:40px 8%;
+
+}
+
+.search-box h2{
+
+color:#1565C0;
+
+margin-bottom:15px;
+
+}
+
+.search-box input{
+
+width:100%;
+
+padding:15px;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+/* ===========================
+   Order Table
+=========================== */
+
+.order-list{
+
+margin:40px 8%;
+
+background:#fff;
+
+padding:30px;
+
+border-radius:18px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+overflow-x:auto;
+
+}
+
+.order-list h2{
+
+margin-bottom:20px;
+
+color:#1565C0;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+table th{
+
+background:#1565C0;
+
+color:#fff;
+
+padding:14px;
+
+}
+
+table td{
+
+padding:14px;
+
+text-align:center;
+
+border-bottom:1px solid #eee;
+
+}
+
+table tr:hover{
+
+background:#f7fbff;
+
+}
+
+/* ===========================
+   Footer
+=========================== */
+
+.admin-footer{
+
+margin-top:60px;
+
+background:#1565C0;
+
+color:#fff;
+
+text-align:center;
+
+padding:20px;
+
+}
+
+/* ===========================
+   Mobile Responsive
+=========================== */
+
+@media(max-width:768px){
+
+.admin-header{
+
+flex-direction:column;
+
+gap:15px;
+
+text-align:center;
+
+}
+
+.dashboard{
+
+padding:25px;
+
+}
+
+.order-box,
+.search-box,
+.order-list{
+
+margin:20px;
+
+padding:20px;
+
+}
+
+.dashboard-grid{
+
+grid-template-columns:1fr;
+
+}
+
+table{
+
+font-size:13px;
+
+}
+
+}
