@@ -1,20 +1,47 @@
 // ==============================
-// Meera Online Point Admin V1.0
+// Meera Online Point Admin V2.0
+// Firebase Version - Part 1
 // ==============================
 
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
+import {
+  db,
+  collection,
+  getDocs,
+  deleteDoc,
+  doc
+} from "./firebase.js";
 
-const form = document.getElementById("adminOrderForm");
+let orders = [];
+
 const table = document.getElementById("orderTable");
 const search = document.getElementById("searchInput");
 
-function saveOrders() {
-    localStorage.setItem("orders", JSON.stringify(orders));
+async function loadOrders() {
+
+    const querySnapshot = await getDocs(collection(db, "orders"));
+
+    orders = [];
+
+    querySnapshot.forEach((document) => {
+
+        orders.push({
+
+            docId: document.id,
+
+            ...document.data()
+
+        });
+
+    });
+
+    showOrders();
+
 }
 
 function updateDashboard() {
 
-    document.getElementById("totalOrders").innerText = orders.length;
+    document.getElementById("totalOrders").innerText =
+        orders.length;
 
     document.getElementById("pendingOrders").innerText =
         orders.filter(o => o.status === "Pending").length;
@@ -25,38 +52,44 @@ function updateDashboard() {
     document.getElementById("completedOrders").innerText =
         orders.filter(o => o.status === "Completed").length;
 
-}
-
-function showOrders(data = orders) {
+}function showOrders(data = orders) {
 
     table.innerHTML = "";
 
-    data.forEach((order, index) => {
+    data.forEach((order) => {
 
         table.innerHTML += `
+
         <tr>
 
-        <td>${order.id}</td>
+            <td>${order.docId}</td>
 
-        <td>${order.name}</td>
+            <td>${order.name}</td>
 
-        <td>${order.mobile}</td>
+            <td>${order.phone}</td>
 
-        <td>${order.service}</td>
+            <td>${order.service}</td>
 
-        <td>${order.status}</td>
+            <td>${order.status}</td>
 
-        <td>${order.date}</td>
+            <td>${
+                order.createdAt
+                ? new Date(order.createdAt.seconds * 1000).toLocaleString()
+                : "-"
+            }</td>
 
-        <td>
+            <td>
 
-        <button onclick="deleteOrder(${index})">
-        Delete
-        </button>
+                <button onclick="deleteOrder('${order.docId}')">
 
-        </td>
+                    Delete
+
+                </button>
+
+            </td>
 
         </tr>
+
         `;
 
     });
@@ -65,45 +98,13 @@ function showOrders(data = orders) {
 
 }
 
-form.addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    const order = {
-
-        id: "MOP" + Date.now(),
-
-        name: document.getElementById("customerName").value,
-
-        mobile: document.getElementById("customerMobile").value,
-
-        service: document.getElementById("customerService").value,
-
-        status: document.getElementById("orderStatus").value,
-
-        date: new Date().toLocaleDateString()
-
-    };
-
-    orders.push(order);
-
-    saveOrders();
-
-    showOrders();
-
-    form.reset();
-
-});
-
-function deleteOrder(index){
+window.deleteOrder = async function(id){
 
     if(confirm("Delete this Order?")){
 
-        orders.splice(index,1);
+        await deleteDoc(doc(db,"orders",id));
 
-        saveOrders();
-
-        showOrders();
+        loadOrders();
 
     }
 
@@ -117,7 +118,7 @@ search.addEventListener("keyup", function(){
 
         order.name.toLowerCase().includes(value) ||
 
-        order.mobile.includes(value) ||
+        order.phone.includes(value) ||
 
         order.service.toLowerCase().includes(value)
 
@@ -125,8 +126,16 @@ search.addEventListener("keyup", function(){
 
     showOrders(filtered);
 
-});
+});// ==============================
+// Part 3 (Final)
+// ==============================
 
-showOrders();
+// Initial Load
+loadOrders();
 
-console.log("Admin Panel Ready");
+// Auto Refresh every 10 seconds
+setInterval(() => {
+    loadOrders();
+}, 10000);
+
+console.log("✅ Meera Online Point Admin V2.0 Ready");

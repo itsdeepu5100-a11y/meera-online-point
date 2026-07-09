@@ -2,6 +2,7 @@
 // MEERA ONLINE POINT
 // script.js
 // ==========================
+import { db, collection, addDoc } from "./firebase.js";
 
 // Hide Loader
 window.addEventListener("load", function () {
@@ -34,13 +35,12 @@ window.addEventListener("scroll", function () {
     }
 
 });
-
 // Order Form
 const orderForm = document.getElementById("orderForm");
 
 if (orderForm) {
 
-    orderForm.addEventListener("submit", function (e) {
+    orderForm.addEventListener("submit", async function (e) {
 
         e.preventDefault();
 
@@ -56,7 +56,22 @@ if (orderForm) {
             other = otherInput.value;
         }
 
-        let message =
+        try {
+
+            await addDoc(collection(db, "orders"), {
+
+                name: name,
+                phone: phone,
+                service: service,
+                other: other,
+
+                status: "Pending",
+
+                createdAt: new Date()
+
+            });
+
+            let message =
 `Hello Meera Online Point
 
 Name : ${name}
@@ -66,11 +81,23 @@ Service : ${service}
 ${service === "Other" ? "Work Details : " + other : ""}
 `;
 
-        window.open(
-            "https://wa.me/919335779880?text=" +
-            encodeURIComponent(message),
-            "_blank"
-        );
+            window.open(
+                "https://wa.me/919335779880?text=" +
+                encodeURIComponent(message),
+                "_blank"
+            );
+
+            alert("Order Submitted Successfully.");
+
+            orderForm.reset();
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Firebase Error : " + error.message);
+
+        }
 
     });
 
