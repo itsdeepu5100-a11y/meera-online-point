@@ -35,72 +35,70 @@ window.addEventListener("scroll", function () {
     }
 
 });
-// Order Form
 const orderForm = document.getElementById("orderForm");
 
 if (orderForm) {
+  orderForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    orderForm.addEventListener("submit", async function (e) {
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const service = document.getElementById("service").value;
+    const otherInput = document.getElementById("otherService");
+    const other = otherInput ? otherInput.value.trim() : "";
 
-        e.preventDefault();
+    if (!name || !phone || !service) {
+      alert("Please fill all required fields.");
+      return;
+    }
 
-        const name = document.getElementById("name").value;
-        const phone = document.getElementById("phone").value;
-        const service = document.getElementById("service").value;
+    const message =
+      `Hello Meera Online Point\n\n` +
+      `Name: ${name}\n` +
+      `Phone: ${phone}\n` +
+      `Service: ${service}\n` +
+      (service === "Other" ? `Work Details: ${other}\n` : "");
 
-        let other = "";
+    const whatsappURL =
+      "https://wa.me/919335779880?text=" +
+      encodeURIComponent(message);
 
-        const otherInput = document.getElementById("otherService");
+    window.open(whatsappURL, "_blank");
 
-        if (otherInput) {
-            other = otherInput.value;
-        }
+    alert("WhatsApp is opening. Please send your order message there.");
+  });
+}const orderForm = document.getElementById("orderForm");
 
-        try {
+if (orderForm) {
+  orderForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-            await addDoc(collection(db, "orders"), {
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const service = document.getElementById("service").value;
+    const otherInput = document.getElementById("otherService");
+    const other = otherInput ? otherInput.value.trim() : "";
 
-                name: name,
-                phone: phone,
-                service: service,
-                other: other,
+    if (!name || !phone || !service) {
+      alert("Please fill all required fields.");
+      return;
+    }
 
-                status: "Pending",
+    const message =
+      `Hello Meera Online Point\n\n` +
+      `Name: ${name}\n` +
+      `Phone: ${phone}\n` +
+      `Service: ${service}\n` +
+      (service === "Other" ? `Work Details: ${other}\n` : "");
 
-                createdAt: new Date()
+    const whatsappURL =
+      "https://wa.me/919335779880?text=" +
+      encodeURIComponent(message);
 
-            });
+    window.open(whatsappURL, "_blank");
 
-            let message =
-`Hello Meera Online Point
-
-Name : ${name}
-Phone : ${phone}
-Service : ${service}
-
-${service === "Other" ? "Work Details : " + other : ""}
-`;
-
-            window.open(
-                "https://wa.me/919335779880?text=" +
-                encodeURIComponent(message),
-                "_blank"
-            );
-
-            alert("Order Submitted Successfully.");
-
-            orderForm.reset();
-
-        } catch (error) {
-
-            console.error(error);
-
-            alert("Firebase Error : " + error.message);
-
-        }
-
-    });
-
+    alert("WhatsApp is opening. Please send your order message there.");
+  });
 }
 
 // Other Service Box
