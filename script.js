@@ -1,90 +1,57 @@
-// ==========================
- // MEERA ONLINE POINT
- // script.js
- // ==========================
+const orderForm = document.getElementById("orderForm");
 
- // Hide Loader
- window.addEventListener("load", function () {
-     const loader = document.querySelector(".loader");
-     if (loader) loader.style.display = "none";
- });
+if (orderForm) {
+  orderForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
- // Current Year in Footer
- const copyright = document.querySelector(".copyright");
- if (copyright) {
-     copyright.innerHTML = `© ${new Date().getFullYear()} Meera Online Point. All Rights Reserved.`;
- }
+    const name = document.getElementById("name")?.value.trim() || "";
+    const phone = document.getElementById("phone")?.value.trim() || "";
+    const service = document.getElementById("service")?.value || "";
+    const other = document.getElementById("otherService")?.value.trim() || "";
 
- // Header Shadow on Scroll
- window.addEventListener("scroll", function () {
-     const header = document.querySelector("header");
-     if (header) {
-         header.style.boxShadow = window.scrollY > 50
-             ? "0 8px 20px rgba(0,0,0,.25)"
-             : "0 5px 15px rgba(0,0,0,.08)";
-     }
- });
+    if (!name || !phone || !service) {
+      alert("Please fill all required fields.");
+      return;
+    }
 
- // Order Form - Send directly to WhatsApp
- const orderForm = document.getElementById("orderForm");
+    const orderId = "MOP-" + Date.now();
+    const details = service === "Other" ? other : "";
+    const apiURL = "https://script.google.com/macros/s/AKfycbz58mEGOTFYhiJWDJh9QLJdRNKRL00GbtQnbBD--uenKfXhA_JeT_Tok7mDMilIOODjfQ/exec";
 
- if (orderForm) {
-     orderForm.addEventListener("submit", function (e) {
-         e.preventDefault();
+    const payload = {
+      orderId,
+      name,
+      phone,
+      service,
+      details
+    };
 
-         const name = document.getElementById("name")?.value.trim() || "";
-         const phone = document.getElementById("phone")?.value.trim() || "";
-         const serviceSelect = document.getElementById("service");
-         const service = serviceSelect?.value || "";
-         const otherInput = document.getElementById("otherService");
-         const other = otherInput?.value.trim() || "";
+    const message =
+      `New Order - Meera Online Point\n\n` +
+      `Order ID: ${orderId}\n` +
+      `Name: ${name}\n` +
+      `Phone: ${phone}\n` +
+      `Service: ${service}\n` +
+      `Details: ${details || "N/A"}`;
 
-         if (!name || !phone || !service) {
-             alert("Please fill all required fields.");
-             return;
-         }
+    const whatsappURL =
+      "https://wa.me/919335779880?text=" +
+      encodeURIComponent(message);
 
-         const message =
-             `Hello Meera Online Point\n\n` +
-             `Name: ${name}\n` +
-             `Phone: ${phone}\n` +
-             `Service: ${service}\n` +
-             (service === "Other" ? `Work Details: ${other}\n` : "");
+    try {
+      await fetch(apiURL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload)
+      });
 
-         const whatsappURL =
-             "https://wa.me/919335779880?text=" +
-             encodeURIComponent(message);
-
-         window.location.href = whatsappURL;
-     });
- }
-
- // Other Service Box
- const serviceSelect = document.getElementById("service");
- const otherBox = document.getElementById("otherServiceBox");
-
- if (serviceSelect && otherBox) {
-     function updateOtherBox() {
-         otherBox.style.display =
-             serviceSelect.value === "Other" ? "block" : "none";
-     }
-
-     serviceSelect.addEventListener("change", updateOtherBox);
-     updateOtherBox();
- }
-
- // Smooth Scroll
- document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-     anchor.addEventListener("click", function (e) {
-         const href = this.getAttribute("href");
-         if (!href || href === "#") return;
-
-         const target = document.querySelector(href);
-         if (target) {
-             e.preventDefault();
-             target.scrollIntoView({ behavior: "smooth" });
-         }
-     });
- });
-
- console.log("Welcome To Meera Online Point");
+      window.location.href = whatsappURL;
+    } catch (error) {
+      alert("Order send nahi ho saka. Internet check karke dobara try karein.");
+      console.error(error);
+    }
+  });
+}
