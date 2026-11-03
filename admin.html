@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meera Online Point | Hardoi's Trusted Digital Service Center</title>
     <style>
-        /* CSS को सीधे यहीं जोड़ दिया ताकि लोड होने में कोई एरर न आए */
         :root {
             --main-bg-color: #ffffff;
             --main-font-size: 17px;
@@ -68,7 +67,6 @@
         .dynamic-card { border-left: 4px solid #28a745; }
         .delete-service-btn { background: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; margin-top: 10px; }
 
-        /* एडमिन पैनल स्टाइल्स */
         .admin-panel-box {
             background: #e9ecef;
             border: 2px dashed #007bff;
@@ -86,7 +84,6 @@
         .admin-trigger-zone { text-align: center; padding: 40px 0; background: #f1f3f5; margin-top: 50px; }
         #btn-admin-login-trigger { background: #fff; border: 1px solid #bbb; color: #555; cursor: pointer; padding: 8px 16px; border-radius: 4px; font-weight: bold;}
 
-        /* लॉगिन पॉपअप */
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 2000; }
         .modal-content { background: white; padding: 35px; border-radius: 10px; text-align: center; width: 320px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
         .modal-content h3 { margin-top: 0; margin-bottom: 20px; color: #333; }
@@ -111,7 +108,7 @@
     <!-- Welcome Section -->
     <section class="welcome-section">
         <h2>हमारे यहाँ सभी ऑनलाइन कार्य जिम्मेदारी से किए जाते हैं</h2>
-        <p>इंटरनेट, फॉर्म फिलिंग, और सरकारी योजनाओं से जुड़ी सभी सुविधाएं एक ही स्थान पर।</p>
+        <p>इंटरनेट, Form Filling, और सरकारी योजनाओं से जुड़ी सभी सुविधाएं एक ही स्थान पर।</p>
     </section>
 
     <!-- Services Section -->
@@ -119,7 +116,6 @@
         <section class="services-section">
             <h2 class="section-title">Our Popular Services</h2>
             
-            <!-- मुख्य कोर सर्विसेज -->
             <div class="services-grid" id="core-services">
                 <div class="service-card">💳 <h3>पैन कार्ड (PAN Card)</h3><p>नया पैन कार्ड एवं संशोधन</p></div>
                 <div class="service-card">🆔 <h3>आधार सर्विस (Aadhaar Services)</h3><p>डाउनलोड एवं सुधार सहायता</p></div>
@@ -129,12 +125,11 @@
                 <div class="service-card">🚗 <h3>ड्राइविंग लाइसेंस</h3><p>ऑनलाइन फॉर्म एवं स्लॉट बुकिंग</p></div>
             </div>
 
-            <!-- एडमिन वाली डायनेमिक सर्विसेज -->
             <h3 class="dynamic-title" id="additional-services-title" style="display:none;">अन्य विशेष सेवाएं</h3>
             <div class="services-grid" id="dynamic-services-container"></div>
         </section>
 
-        <!-- 🛠 *एडमिन कंट्रोल पैनल* -->
+        <!-- Admin Controls Panel -->
         <section id="admin-panel" class="admin-panel-box" style="display: none;">
             <h3>🛠️ एडमिन कंट्रोल पैनल चालू है</h3>
             
@@ -154,7 +149,7 @@
 
             <div class="control-group">
                 <label>नई सर्विस जोड़ें (Add New Service):</label>
-                <input type="text" id="new-service-name" placeholder="सर्विस का नाम लिखें (जैसे: आयुष्मान कार्ड)...">
+                <input type="text" id="new-service-name" placeholder="सर्विस का नाम लिखें...">
                 <button id="btn-add-service">Add Service</button>
             </div>
 
@@ -164,7 +159,7 @@
             </div>
         </section>
 
-        <!-- Admin Login Button -->
+        <!-- Admin Login Trigger Button -->
         <div class="admin-trigger-zone">
             <button id="btn-admin-login-trigger">Admin Login</button>
         </div>
@@ -185,7 +180,34 @@
         <p>© 2026 Meera Online Point. All Rights Reserved.</p>
     </footer>
 
-    <!-- Firebase App JavaScript -->
-    <script type="module" src="script.js"></script>
-</body>
-</html>
+    <!-- Firebase Script Logic Inside HTML to bypass Vercel cache -->
+    <script type="module">
+        import { initializeApp } from "https://gstatic.com";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://gstatic.com";
+        import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion, arrayRemove } from "https://gstatic.com";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyDxJu0QZDEj1jdtC9VjGNpDQy43x0QIpbs",
+          authDomain: "://firebaseapp.com",
+          projectId: "meera-online-point",
+          storageBucket: "meera-online-point.firebasestorage.app",
+          messagingSenderId: "660544825222",
+          appId: "1:660544825222:web:5152625caf483b35a5ee07"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let isAdminLoggedIn = false;
+
+        async function loadLiveWebsiteData() {
+            try {
+                const docRef = doc(db, "siteSettings", "config");
+                const docSnap = await getDoc(docRef);
+                
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    
+                    if (data.theme) {
+                        document.documentElement.style.setProperty('--main-bg-color', data.theme.bgColor);
