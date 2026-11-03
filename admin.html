@@ -1,186 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meera Online Point | Admin</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f3f5f9;
-      color: #182230;
-    }
-    header {
-      background: #173b72;
-      color: white;
-      padding: 18px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    header h2 { margin: 0; font-size: 21px; }
-    main { max-width: 1100px; margin: auto; padding: 20px; }
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 10px #0000000d;
-    }
-    .login-card { max-width: 420px; margin: 50px auto; }
-    h3 { margin-top: 0; }
-    input, select, button {
-      font: inherit;
-      padding: 11px;
-      border-radius: 7px;
-    }
-    input, select {
-      width: 100%;
-      border: 1px solid #ccd3df;
-      background: white;
-    }
-    label { display: block; margin: 12px 0 6px; }
-    button {
-      border: 0;
-      cursor: pointer;
-      background: #1769d2;
-      color: white;
-      font-weight: bold;
-    }
-    button:disabled { opacity: .6; cursor: wait; }
-    .logout { background: #dc3545; }
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(120px, 1fr));
-      gap: 12px;
-    }
-    .stat {
-      background: white;
-      border-radius: 10px;
-      padding: 17px;
-      box-shadow: 0 2px 8px #0000000b;
-    }
-    .stat strong { display: block; font-size: 26px; margin-top: 8px; }
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .full { grid-column: 1 / -1; }
-    .table-wrap { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; min-width: 750px; }
-    th, td {
-      padding: 11px;
-      text-align: left;
-      border-bottom: 1px solid #e6e9ef;
-    }
-    th { background: #f7f9fc; }
-    td select { min-width: 125px; }
-    .delete { background: #dc3545; }
-    .message { margin-top: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
-    .error { color: #b42318; }
-    .success { color: #067647; }
-    [hidden] { display: none !important; }
-    @media (max-width: 650px) {
-      main { padding: 12px; }
-      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .form-grid { grid-template-columns: 1fr; }
-      .full { grid-column: auto; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meera Online Point | Hardoi's Trusted Digital Service Center</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h2>Meera Online Point — Admin</h2>
-    <button id="logoutBtn" class="logout" hidden>Logout</button>
-  </header>
 
-  <main>
-    <section id="loginSection" class="card login-card">
-      <h3>Admin Login</h3>
-      <p>Apne registered admin email aur password se login karein.</p>
-      <form id="loginForm">
-        <label for="loginEmail">Email</label>
-        <input id="loginEmail" type="email" autocomplete="username" required>
-
-        <label for="loginPassword">Password</label>
-        <input id="loginPassword" type="password"
-          autocomplete="current-password" required>
-
-        <button id="loginBtn" type="submit" style="width:100%;margin-top:16px">
-          Login
-        </button>
-      </form>
-      <p id="loginMessage" class="message" role="status"></p>
-    </section>
-
-    <section id="dashboard" hidden>
-      <div class="stats">
-        <div class="stat">Total Orders<strong id="totalOrders">0</strong></div>
-        <div class="stat">Pending<strong id="pendingOrders">0</strong></div>
-        <div class="stat">Processing<strong id="processingOrders">0</strong></div>
-        <div class="stat">Completed<strong id="completedOrders">0</strong></div>
-      </div>
-
-      <section class="card" style="margin-top:20px">
-        <h3>Add New Order</h3>
-        <form id="addOrderForm" class="form-grid">
-          <div>
-            <label for="customerName">Customer Name</label>
-            <input id="customerName" required>
-          </div>
-          <div>
-            <label for="customerMobile">Mobile Number</label>
-            <input id="customerMobile" type="tel" required>
-          </div>
-          <div>
-            <label for="customerService">Service</label>
-            <input id="customerService" required>
-          </div>
-          <div>
-            <label for="customerStatus">Status</label>
-            <select id="customerStatus">
-              <option>Pending</option>
-              <option>Processing</option>
-              <option>Completed</option>
-            </select>
-          </div>
-          <div class="full">
-            <button id="addOrderBtn" type="submit">Add Order</button>
-          </div>
-        </form>
-        <p id="orderMessage" class="message" role="status"></p>
-      </section>
-
-      <section class="card">
-        <h3>All Orders</h3>
-        <label for="searchInput">Search by name, phone or service</label>
-        <input id="searchInput" placeholder="Search orders...">
-        <p id="tableMessage" class="message" role="status"></p>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>Name</th>
-                <th>Mobile</th>
-                <th>Service</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="orderTable"></tbody>
-          </table>
+    <!-- Top Banner -->
+    <header class="main-header">
+        <div class="logo-container">
+            <h1>Meera Online Point</h1>
+            <p class="tagline">Fast • Trusted • Secure</p>
+            <p class="location">📍 Hardoi, Uttar Pradesh</p>
         </div>
-      </section>
-    </section>
-  </main>
+    </header>
 
-  <script type="module" src="./admin.js"></script>
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <h2>हमारे यहाँ सभी ऑनलाइन कार्य जिम्मेदारी से किए जाते हैं</h2>
+        <p>इंटरनेट, फॉर्म फिलिंग, और सरकारी योजनाओं से जुड़ी सभी सुविधाएं एक ही स्थान पर।</p>
+    </section>
+
+    <!-- Services Section -->
+    <main>
+        <section class="services-section">
+            <h2 class="section-title">Our Popular Services</h2>
+            
+            <!-- मुख्य सर्विसेज़ जो हमेशा दिखेंगी -->
+            <div class="services-grid" id="core-services">
+                <div class="service-card">💳 <h3>पैन कार्ड (PAN Card)</h3><p>नया पैन कार्ड एवं संशोधन</p></div>
+                <div class="service-card">🆔 <h3>आधार सर्विस (Aadhaar Services)</h3><p>डाउनलोड एवं सुधार सहायता</p></div>
+                <div class="service-card">🌾 <h3>किसान सम्मान निधि</h3><p>e-KYC एवं नया रजिस्ट्रेशन</p></div>
+                <div class="service-card">📜 <h3>आय / जाति / निवास</h3><p>सरकारी प्रमाण पत्र आवेदन</p></div>
+                <div class="service-card">🗳️ <h3>वोटर आईडी (Voter ID)</h3><p>नया कार्ड एवं सुधार</p></div>
+                <div class="service-card">🚗 <h3>ड्राइविंग लाइसेंस</h3><p>ऑनलाइन फॉर्म एवं स्लॉट बुकिंग</p></div>
+            </div>
+
+            <!-- एडमिन द्वारा जोड़ी जाने वाली नई सर्विसेज यहाँ दिखाई देंगी -->
+            <h3 class="dynamic-title" id="additional-services-title" style="display:none;">अन्य विशेष सेवाएं</h3>
+            <div class="services-grid" id="dynamic-services-container"></div>
+        </section>
+
+        <!-- 🛠️ एडमिन कंट्रोल पैनल (लॉगिन के बाद ही नीचे खुलेगा) -->
+        <section id="admin-panel" class="admin-panel-box" style="display: none;">
+            <h3>🛠️ एडमिन कंट्रोल पैनल चालू है</h3>
+            
+            <div class="control-group">
+                <label>वेबसाइट का बैकग्राउंड कलर बदलें:</label>
+                <input type="color" id="bg-color-picker" value="#ffffff">
+            </div>
+
+            <div class="control-group">
+                <label>अक्षरों का साइज (Font Size) बदलें:</label>
+                <select id="text-size-picker">
+                    <option value="15px">Small</option>
+                    <option value="17px" selected>Medium</option>
+                    <option value="21px">Large</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>नई सर्विस जोड़ें (Add New Service):</label>
+                <input type="text" id="new-service-name" placeholder="सर्विस का नाम लिखें (जैसे: आयुष्मान कार्ड)...">
+                <button id="btn-add-service">Add Service</button>
+            </div>
+
+            <div class="admin-actions">
+                <button id="btn-save-settings" class="save-btn">थीम सेटिंग्स सेव करें</button>
+                <button id="btn-logout" class="logout-btn">Log Out (एडमिन पैनल बंद करें)</button>
+            </div>
+        </section>
+
+        <!-- Admin Login Button (पेज के फुटर के पास) -->
+        <div class="admin-trigger-zone">
+            <button id="btn-admin-login-trigger">Admin Login</button>
+        </div>
+
+        <!-- Login Modal Popup -->
+        <div id="login-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h3>एडमिन लॉगिन</h3>
+                <input type="email" id="admin-email" placeholder="Email Id" required>
+                <input type="password" id="admin-password" placeholder="Password" required>
+                <button id="btn-submit-login">Sign In</button>
+                <button id="btn-close-modal" class="close-btn">Cancel</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Meera Online Point. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Firebase App JavaScript -->
+    <script type="module" src="script.js"></script>
 </body>
 </html>
