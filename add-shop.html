@@ -1,122 +1,205 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Meera Local पर अपनी दुकान या local business की listing के लिए आवेदन करें।">
-<meta name="theme-color" content="#111827">
-<title>Add Your Shop | Meera Local</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#18212f;line-height:1.5}a{text-decoration:none;color:inherit}
-.container{width:min(1100px,92%);margin:auto}
-header{background:#fff;border-bottom:1px solid #e7eaf0;position:sticky;top:0;z-index:10}
-.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:15px}
-.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800}.mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;display:grid;place-items:center}
-.logo small{display:block;font-size:10px;color:#7b8492;margin-top:-3px}
-.links{display:flex;align-items:center;gap:22px;font-size:13px;color:#596273}.links a:hover{color:#4f46e5}
-.hero{background:linear-gradient(135deg,#101827,#1c3155);color:#fff;padding:38px 0}
-.hero h1{font-size:clamp(27px,5vw,39px);margin-bottom:7px}.hero p{font-size:13px;color:#cbd5e1;max-width:650px}
-main{padding:35px 0 55px}.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(230px,.7fr);gap:20px;align-items:start}
-.panel,.side{background:#fff;border:1px solid #e6eaf0;border-radius:17px;padding:22px}
-.panel h2{font-size:19px;margin-bottom:4px}.intro{font-size:12px;color:#748092;margin-bottom:20px}
-.section-title{font-size:13px;font-weight:800;margin:22px 0 12px;padding-bottom:8px;border-bottom:1px solid #edf0f4}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.field{display:flex;flex-direction:column;gap:6px}.full{grid-column:1/-1}
-label{font-size:11px;font-weight:700;color:#394354}
-input,select,textarea{width:100%;border:1px solid #dce1e9;border-radius:9px;padding:11px 12px;font:inherit;font-size:12px;color:#18212f;background:#fff;outline:none}
-input:focus,select:focus,textarea:focus{border-color:#7770ed;box-shadow:0 0 0 3px rgba(99,102,241,.1)}
-textarea{min-height:90px;resize:vertical}
-.hint{font-size:10px;color:#87909e}
-.checkline{display:flex;gap:9px;align-items:flex-start;font-size:11px;color:#596273;margin:17px 0}
-.checkline input{width:auto;margin-top:2px}
-.submit{border:0;border-radius:10px;background:#4f46e5;color:#fff;font-weight:800;padding:12px 19px;font-size:12px;cursor:pointer}
-.submit:disabled{opacity:.6;cursor:not-allowed}
-.notice{display:none;padding:12px;border-radius:10px;background:#fff7e6;border:1px solid #f4d89a;color:#805b13;font-size:11px;margin-top:13px}
-.side h3{font-size:15px;margin-bottom:10px}.side p{font-size:11px;color:#6e7888;margin:8px 0}
-.step{display:flex;gap:10px;margin:15px 0}.num{width:25px;height:25px;border-radius:50%;background:#eef2ff;color:#4f46e5;display:grid;place-items:center;font-weight:800;font-size:11px;flex:none}
-.step strong{display:block;font-size:11px}.step span{display:block;color:#7b8492;font-size:10px}
-.warning{background:#fff8e9;border:1px solid #f4e1b4;border-radius:12px;padding:12px;margin-top:17px;font-size:10px;color:#785b22}
-footer{background:#0e1522;color:#8993a3;padding:22px 0;text-align:center;font-size:10px}
-@media(max-width:760px){.grid{grid-template-columns:1fr}.links{gap:12px;font-size:11px}.panel,.side{padding:17px}}
-@media(max-width:480px){.links a:nth-child(2){display:none}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.hero{padding:30px 0}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meera Local par apna local business aur vyapar list karein.">
+  <title>अपना व्यापार जोड़ें | Meera Local</title>
+  <style>
+    :root { --brand:#176b52; --brand-dark:#10513e; --bg:#f4f7f5; --text:#17231f; --muted:#65736d; --line:#dce6e0; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial, sans-serif; background:var(--bg); color:var(--text); }
+    header { background:#fff; border-bottom:1px solid var(--line); padding:15px 18px; }
+    .nav { max-width:900px; margin:auto; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .brand { color:var(--brand-dark); font-size:21px; font-weight:800; text-decoration:none; }
+    .back { color:var(--brand-dark); text-decoration:none; font-size:14px; }
+    main { max-width:760px; margin:30px auto; padding:0 15px; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:18px; padding:24px; box-shadow:0 8px 28px rgba(20,50,35,.05); }
+    h1 { margin:0 0 8px; font-size:28px; }
+    .intro { color:var(--muted); line-height:1.6; margin:0 0 22px; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .field { margin-bottom:16px; }
+    label { display:block; font-weight:700; font-size:14px; margin-bottom:7px; }
+    input, select, textarea { width:100%; border:1px solid #cbd8d0; border-radius:10px; padding:12px 13px; font:inherit; color:var(--text); background:#fff; outline:none; }
+    input:focus, select:focus, textarea:focus { border-color:var(--brand); box-shadow:0 0 0 3px rgba(23,107,82,.10); }
+    textarea { min-height:105px; resize:vertical; }
+    .hint { color:var(--muted); font-size:12px; margin-top:6px; }
+    .consent { display:flex; gap:10px; align-items:flex-start; font-size:13px; color:var(--muted); line-height:1.5; margin:4px 0 18px; }
+    .consent input { width:auto; margin-top:3px; }
+    button { width:100%; border:0; border-radius:11px; padding:14px 18px; background:var(--brand); color:#fff; font-weight:700; font-size:16px; cursor:pointer; }
+    button:hover { background:var(--brand-dark); }
+    button:disabled { opacity:.65; cursor:not-allowed; }
+    #message { display:none; margin-top:16px; padding:13px; border-radius:10px; line-height:1.5; font-size:14px; }
+    #message.success { display:block; background:#e9f7ef; color:#155c37; border:1px solid #b9e4c9; }
+    #message.error { display:block; background:#fff0ef; color:#9b2822; border:1px solid #f0c5c1; }
+    .note { margin-top:18px; color:var(--muted); font-size:12px; line-height:1.6; }
+    .hp { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
+    footer { text-align:center; color:var(--muted); font-size:12px; padding:20px; }
+    @media (max-width:620px) { .grid { grid-template-columns:1fr; gap:0; } .card { padding:19px; } h1 { font-size:24px; } main { margin:20px auto; } }
+  </style>
 </head>
 <body>
-<header>
- <div class="container nav">
-  <a class="logo" href="index.html"><span class="mark">M</span><span>MEERA LOCAL<small>हर local जरूरत, एक जगह</small></span></a>
-  <nav class="links"><a href="index.html">Home</a><a href="search.html">Search</a><a href="businesses.html">Businesses</a></nav>
- </div>
-</header>
+  <header>
+    <nav class="nav">
+      <a class="brand" href="index.html">MEERA LOCAL</a>
+      <a class="back" href="index.html">← वापस जाएँ</a>
+    </nav>
+  </header>
 
-<section class="hero">
- <div class="container">
-  <h1>अपनी दुकान Meera Local पर जोड़ें</h1>
-  <p>अपने business की basic जानकारी दें। आवेदन की जाँच के बाद listing प्रकाशित की जाएगी। फिलहाल यह registration form का frontend preview है।</p>
- </div>
-</section>
+  <main>
+    <section class="card">
+      <h1>अपना व्यापार जोड़ें</h1>
+      <p class="intro">Meera Local par apne Local Business ki basic details submit karein. Jaanch ke baad listing approve hone par website par dikhai jayegi.</p>
 
-<main class="container">
- <div class="grid">
-  <section class="panel">
-   <h2>Business Registration</h2>
-   <p class="intro">सभी जरूरी जानकारी सही भरें। जिन fields पर * है वे आवश्यक हैं।</p>
+      <form id="businessForm">
+        <div class="grid">
+          <div class="field">
+            <label for="businessName">Business / Vyapar ka naam *</label>
+            <input id="businessName" name="businessName" type="text" maxlength="80" required autocomplete="organization" placeholder="Jaise: Sharma General Store">
+          </div>
+          <div class="field">
+            <label for="ownerName">Owner ka naam *</label>
+            <input id="ownerName" name="ownerName" type="text" maxlength="60" required autocomplete="name" placeholder="Aapka naam">
+          </div>
+        </div>
 
-   <form id="shopForm" autocomplete="on">
-    <div class="section-title">1. दुकान की जानकारी</div>
-    <div class="form-grid">
-     <div class="field full"><label for="shopName">दुकान / Business का नाम *</label><input id="shopName" name="shopName" maxlength="80" required placeholder="जैसे: Sharma Mobile Store"></div>
-     <div class="field"><label for="category">Category *</label>
-      <select id="category" name="category" required>
-       <option value="">Select category</option><option>Mobile & Electronics</option><option>Medical & Pharmacy</option><option>Food & Restaurant</option><option>Grocery & General Store</option><option>Education & Coaching</option><option>Repair & Services</option><option>Fashion & Clothing</option><option>Digital & Online Services</option><option>Other</option>
-      </select>
-     </div>
-     <div class="field"><label for="owner">Owner / Contact Person *</label><input id="owner" name="owner" maxlength="60" required placeholder="आपका नाम"></div>
-     <div class="field"><label for="phone">Mobile Number *</label><input id="phone" name="phone" type="tel" inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10" required placeholder="10 digit mobile number"><span class="hint">केवल 10 अंकों का भारतीय मोबाइल नंबर।</span></div>
-     <div class="field"><label for="whatsapp">WhatsApp Number</label><input id="whatsapp" name="whatsapp" type="tel" inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="अगर अलग है"></div>
-     <div class="field full"><label for="description">आपकी दुकान क्या service/product देती है?</label><textarea id="description" name="description" maxlength="500" placeholder="अपनी दुकान और services के बारे में संक्षेप में लिखें।"></textarea><span class="hint">अधिकतम 500 characters.</span></div>
-    </div>
+        <div class="grid">
+          <div class="field">
+            <label for="category">Category *</label>
+            <select id="category" name="category" required>
+              <option value="">Category chunein</option>
+              <option>Grocery & General Store</option>
+              <option>Food & Restaurant</option>
+              <option>Medical & Healthcare</option>
+              <option>Education & Coaching</option>
+              <option>Clothing & Fashion</option>
+              <option>Electronics & Mobile</option>
+              <option>Beauty & Salon</option>
+              <option>Repair & Maintenance</option>
+              <option>Professional Services</option>
+              <option>Other Business</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="phone">Mobile number *</label>
+            <input id="phone" name="phone" type="tel" inputmode="numeric" maxlength="10" minlength="10" pattern="[6-9][0-9]{9}" required placeholder="10 digit mobile number">
+          </div>
+        </div>
 
-    <div class="section-title">2. दुकान का पता</div>
-    <div class="form-grid">
-     <div class="field full"><label for="address">पूरा पता *</label><input id="address" name="address" maxlength="180" required placeholder="मोहल्ला, सड़क, landmark"></div>
-     <div class="field"><label for="area">Area / Locality *</label><input id="area" name="area" maxlength="70" required placeholder="जैसे: Railway Ganj"></div>
-     <div class="field"><label for="city">City *</label><input id="city" name="city" maxlength="60" required value="Hardoi"></div>
-     <div class="field"><label for="state">State *</label><input id="state" name="state" maxlength="50" required value="Uttar Pradesh"></div>
-     <div class="field"><label for="pincode">PIN Code</label><input id="pincode" name="pincode" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="6 digit PIN"></div>
-    </div>
+        <div class="grid">
+          <div class="field">
+            <label for="whatsapp">WhatsApp number</label>
+            <input id="whatsapp" name="whatsapp" type="tel" inputmode="numeric" maxlength="10" minlength="10" pattern="[6-9][0-9]{9}" placeholder="Agar alag ho to bharein">
+            <div class="hint">Khali chhodne par mobile number hi use hoga.</div>
+          </div>
+          <div class="field">
+            <label for="area">Area / Mohalla *</label>
+            <input id="area" name="area" type="text" maxlength="80" required placeholder="Jaise: Avas Vikas">
+          </div>
+        </div>
 
-    <div class="section-title">3. अतिरिक्त जानकारी</div>
-    <div class="form-grid">
-     <div class="field"><label for="hours">Business Hours</label><input id="hours" name="hours" maxlength="60" placeholder="जैसे: 10 AM – 8 PM"></div>
-     <div class="field"><label for="website">Website / Social Link</label><input id="website" name="website" type="url" maxlength="180" placeholder="https://..."></div>
-    </div>
+        <div class="field">
+          <label for="address">Poora address *</label>
+          <textarea id="address" name="address" maxlength="250" required placeholder="Shop / office ka address, city aur PIN code"></textarea>
+        </div>
 
-    <label class="checkline"><input type="checkbox" id="consent" required><span>मैं पुष्टि करता/करती हूँ कि दी गई जानकारी सही है और Meera Local इस जानकारी का उपयोग मेरी business listing की जाँच व प्रकाशन के लिए कर सकता है। *</span></label>
+        <div class="field">
+          <label for="description">Business ke baare mein</label>
+          <textarea id="description" name="description" maxlength="500" placeholder="Aap kya service ya products provide karte hain?"></textarea>
+          <div class="hint">Maximum 500 characters.</div>
+        </div>
 
-    <button class="submit" type="submit">Submit Listing Request →</button>
-    <div class="notice" id="notice" role="status">यह अभी frontend demo है। आपकी जानकारी किसी server या database पर भेजी नहीं गई है। Live submission के लिए secure backend और admin approval जोड़ना बाकी है।</div>
-   </form>
-  </section>
+        <div class="hp" aria-hidden="true">
+          <label for="website">Website</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
 
-  <aside class="side">
-   <h3>आगे क्या होगा?</h3>
-   <div class="step"><div class="num">1</div><div><strong>आप जानकारी भरेंगे</strong><span>दुकान और contact details submit करें।</span></div></div>
-   <div class="step"><div class="num">2</div><div><strong>Admin जाँच करेगा</strong><span>Duplicate, गलत या अधूरी listing की जाँच होगी।</span></div></div>
-   <div class="step"><div class="num">3</div><div><strong>Approval के बाद listing</strong><span>Approved business ही public search में दिखेगा।</span></div></div>
-   <div class="warning"><strong>Security note:</strong> इस page पर अभी कोई password, OTP, Aadhaar या bank details न माँगी जाएँ। Verified badge केवल admin approval के बाद दिया जाएगा।</div>
-   <p style="margin-top:16px">कोई सवाल है? <a href="contact.html" style="color:#4f46e5;font-weight:700">Contact Meera Local</a></p>
-  </aside>
- </div>
-</main>
+        <label class="consent">
+          <input id="consent" type="checkbox" required>
+          <span>Main confirm karta/karti hoon ki di gayi jankari sahi hai aur Meera Local ise listing review ke liye use kar sakta hai. *</span>
+        </label>
 
-<footer><div class="container">© 2026 Meera Local • Local businesses, connected securely</div></footer>
-<script>
-document.getElementById('shopForm').addEventListener('submit',function(event){
- event.preventDefault();
- if(!this.reportValidity()) return;
- document.getElementById('notice').style.display='block';
-});
-</script>
+        <button id="submitBtn" type="submit">व्यापार सबमिट करें</button>
+        <div id="message" role="status" aria-live="polite"></div>
+      </form>
+
+      <p class="note">Note: Submission ke baad aapki listing Pending Review mein rahegi. Approval se pehle yeh public directory mein nahi dikhni chahiye. Kripya password, OTP ya bank details kabhi submit na karein.</p>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Meera Local · Local Business & Vyapar Network</footer>
+
+  <script type="module">
+    import { db, collection, addDoc } from "./firebase.js";
+    import { serverTimestamp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+    const form = document.getElementById("businessForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const message = document.getElementById("message");
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = type;
+    }
+
+    function clean(value) {
+      return value.trim().replace(/\s+/g, " ");
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      // Simple honeypot to catch basic automated form submissions.
+      if (clean(document.getElementById("website").value)) {
+        showMessage("Submission receive nahi ho paya. Kripya dobara try karein.", "error");
+        return;
+      }
+
+      const phone = clean(document.getElementById("phone").value);
+      const whatsappInput = clean(document.getElementById("whatsapp").value);
+      const whatsapp = whatsappInput || phone;
+
+      if (!/^[6-9]\d{9}$/.test(phone) || !/^[6-9]\d{9}$/.test(whatsapp)) {
+        showMessage("Kripya sahi 10 digit Indian mobile number bharein.", "error");
+        return;
+      }
+
+      const businessData = {
+        businessName: clean(document.getElementById("businessName").value),
+        ownerName: clean(document.getElementById("ownerName").value),
+        category: document.getElementById("category").value,
+        phone,
+        whatsapp,
+        area: clean(document.getElementById("area").value),
+        address: clean(document.getElementById("address").value),
+        description: clean(document.getElementById("description").value),
+        status: "pending",
+        createdAt: serverTimestamp()
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+      message.className = "";
+      message.style.display = "none";
+
+      try {
+        await addDoc(collection(db, "localBusinesses"), businessData);
+        form.reset();
+        showMessage("Dhanyavaad! Aapka business submit ho gaya hai. Review aur approval ke baad listing publish ki jayegi.", "success");
+      } catch (error) {
+        console.error("Business submission failed:", error);
+        if (error && error.code === "permission-denied") {
+          showMessage("Database permission abhi allow nahi kar rahi. Listing save nahi hui. Firestore Security Rules set karne ke baad dobara try karein.", "error");
+        } else {
+          showMessage("Abhi submission save nahi ho paya. Internet check karke dobara try karein.", "error");
+        }
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "व्यापार सबमिट करें";
+      }
+    });
+  </script>
 </body>
 </html>
