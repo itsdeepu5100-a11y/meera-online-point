@@ -2,100 +2,111 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10152b">
-<meta name="description" content="Meera Local business profile - local shop details, services and contact information.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Meera Local business profile">
 <title>Business Profile | Meera Local</title>
 <style>
-:root{--ink:#182033;--muted:#667085;--brand:#6558d3;--bg:#f6f7fb;--line:#e8eaf2}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
-a{text-decoration:none;color:inherit}.top{background:#10152b;color:#fff;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
-.brand{font-size:21px;font-weight:850}.brand span{color:#b9aaff}.nav{display:flex;gap:18px;font-size:14px;color:#e5e7f2}
-.wrap{width:min(980px,92%);margin:28px auto 55px}.crumb{font-size:13px;color:var(--muted);margin-bottom:17px}.crumb a{color:var(--brand)}
-.hero{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 8px 28px #17203309}
-.cover{height:155px;background:linear-gradient(120deg,#27205f,#7568dc 55%,#b8adff)}
-.profile{padding:0 26px 25px}.head{display:flex;align-items:flex-end;gap:17px;margin-top:-42px;position:relative}
-.logo{width:88px;height:88px;border-radius:22px;background:#fff;border:5px solid #fff;box-shadow:0 4px 15px #10152b18;display:grid;place-items:center;font-size:38px}
-.nameblock{padding-bottom:7px;flex:1}.tag{display:inline-block;background:#f0edff;color:#5548bd;border-radius:20px;padding:5px 10px;font-size:11px;font-weight:800}
-h1{font-size:clamp(24px,4vw,34px);margin:7px 0 3px;letter-spacing:-.7px}.muted{color:var(--muted);font-size:14px}
-.badge{font-size:12px;color:#8a5b16;background:#fff5df;border:1px solid #f5e3b9;border-radius:20px;padding:7px 10px;white-space:nowrap}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:21px}.btn{display:inline-flex;justify-content:center;align-items:center;padding:12px 17px;border-radius:11px;background:var(--brand);color:white;font-weight:750;font-size:14px}.btn.secondary{background:#fff;color:var(--brand);border:1px solid #dcd7ff}
-.columns{display:grid;grid-template-columns:1.5fr 1fr;gap:17px;margin-top:18px}.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}.panel h2{font-size:18px;margin:0 0 13px}.panel p{font-size:14px;line-height:1.7;color:#596579;margin:0}
-.details{display:grid;gap:14px}.detail{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:#475467}.ico{width:34px;height:34px;border-radius:10px;background:#f1efff;display:grid;place-items:center;flex:none}
-.services{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.service{font-size:12px;padding:7px 10px;background:#f5f6fa;border:1px solid var(--line);border-radius:20px;color:#475467}
-.notice{margin-top:17px;padding:14px 16px;border-radius:13px;background:#fff8e9;border:1px solid #f2e3bf;color:#78531b;font-size:13px;line-height:1.6}
-footer{background:#10152b;color:#c8ccda;padding:23px 5%;font-size:13px}.foot{width:min(980px,100%);margin:auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-@media(max-width:650px){.columns{grid-template-columns:1fr}.profile{padding:0 17px 21px}.head{align-items:flex-start;flex-wrap:wrap}.nameblock{padding-top:45px;margin-left:-105px;width:100%;flex-basis:100%}.badge{margin-top:8px}.cover{height:125px}.panel{padding:18px}.nav{gap:12px}}
+:root{--brand:#176b52;--dark:#10513e;--bg:#f4f7f5;--text:#17231f;--muted:#66756e;--line:#dce6e0}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+header{background:#fff;border-bottom:1px solid var(--line);padding:15px 18px}.nav{max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center}.brand{font-size:21px;font-weight:800;color:var(--dark);text-decoration:none}.back{color:var(--dark);text-decoration:none;font-size:14px}
+main{max-width:900px;margin:30px auto;padding:0 15px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 8px 28px rgba(20,50,35,.05)}
+#loading{text-align:center;color:var(--muted);padding:30px}#error{display:none;text-align:center}.tag{display:inline-block;background:#e8f3ed;color:var(--dark);border-radius:20px;padding:6px 11px;font-size:12px;font-weight:700}.name{font-size:32px;font-weight:800;margin:13px 0 8px}.area{color:var(--muted);margin-bottom:22px}.desc{line-height:1.7;color:#52615b;margin-bottom:24px}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:12px}.info-box{border:1px solid var(--line);border-radius:12px;padding:14px}.label{font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:5px}.value{font-size:14px;line-height:1.5;word-break:break-word}
+.actions{display:flex;gap:10px;margin-top:24px}.btn{flex:1;text-align:center;text-decoration:none;padding:12px;border-radius:10px;font-weight:700;font-size:14px}.call{background:var(--brand);color:#fff}.wa{background:#eaf5ee;color:var(--dark)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
+@media(max-width:600px){.card{padding:19px}.name{font-size:26px}.info{grid-template-columns:1fr}.actions{flex-direction:column}}
 </style>
 </head>
 <body>
-<header class="top">
-<a class="brand" href="index.html">MEERA <span>LOCAL</span></a>
-<nav class="nav"><a href="index.html">Home</a><a href="businesses.html">Businesses</a><a href="add-shop.html">Add Your Shop</a></nav>
-</header>
-<main class="wrap">
-<div class="crumb"><a href="index.html">Home</a> / <a href="businesses.html">Businesses</a> / Business Profile</div>
-<section class="hero">
-<div class="cover"></div>
-<div class="profile">
-<div class="head">
-<div class="logo" id="logo">🏪</div>
-<div class="nameblock">
-<span class="tag" id="category">Sample business</span>
-<h1 id="shopName">Example Local Store</h1>
-<div class="muted" id="location">Hardoi, Uttar Pradesh</div>
+<header><nav class="nav"><a class="brand" href="index.html">MEERA LOCAL</a><a class="back" href="businesses.html">← Businesses</a></nav></header>
+
+<main>
+<section class="card">
+<div id="loading">Business profile load ho raha hai...</div>
+
+<div id="profile" hidden>
+  <span id="category" class="tag"></span>
+  <h1 id="name" class="name"></h1>
+  <div id="area" class="area"></div>
+  <div id="description" class="desc"></div>
+
+  <div class="info">
+    <div class="info-box"><div class="label">Address</div><div id="address" class="value"></div></div>
+    <div class="info-box"><div class="label">Business / Vyapar</div><div id="businessType" class="value"></div></div>
+  </div>
+
+  <div id="actions" class="actions"></div>
 </div>
-<span class="badge">Demo profile · Not verified</span>
-</div>
-<div class="actions">
-<a class="btn" id="callLink" href="tel:+919999999999">Call Business</a>
-<a class="btn secondary" id="waLink" href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-<a class="btn secondary" href="businesses.html">Back to Directory</a>
-</div>
+
+<div id="error">
+  <h2>Profile nahi mila</h2>
+  <p>Ye business available nahi hai, ya abhi approved nahi hua hai.</p>
+  <a class="btn call" href="businesses.html">Businesses par wapas जाएँ</a>
 </div>
 </section>
-<div class="columns">
-<section class="panel">
-<h2>About this business</h2>
-<p id="description">Yah ek sample business profile hai. Is jagah par shop ka verified introduction, customer information aur business ki khaas details dikhengi. Real shop data secure database se connect hone ke baad yahan aayega.</p>
-<h2 style="margin-top:24px">Products & Services</h2>
-<div class="services" id="services"><span class="service">Sample service 1</span><span class="service">Sample service 2</span><span class="service">Sample service 3</span></div>
-</section>
-<aside class="panel">
-<h2>Contact & Location</h2>
-<div class="details">
-<div class="detail"><span class="ico">📍</span><span id="address">Hardoi, Uttar Pradesh, India</span></div>
-<div class="detail"><span class="ico">📞</span><span id="phone">+91 99999 99999 (placeholder)</span></div>
-<div class="detail"><span class="ico">🕒</span><span id="hours">Business hours: To be updated</span></div>
-<div class="detail"><span class="ico">🌐</span><span id="website">Website: Not provided</span></div>
-</div>
-</aside>
-</div>
-<div class="notice"><strong>Important:</strong> Yeh abhi profile template/demo hai. Is par dikhayi gayi sample details kisi real shop ki nahi hain. Public profile tabhi publish honi chahiye jab shop owner ki permission, details aur admin approval confirm ho.</div>
 </main>
-<footer><div class="foot"><span>© 2026 Meera Local</span><span><a href="contact.html">Contact</a> · <a href="add-shop.html">List your business</a></span></div></footer>
-<script>
-/* Safe demo-only query customization. Never trust query values as HTML. */
-(function(){
- const params=new URLSearchParams(location.search);
- const fields={name:'shopName',category:'category',city:'location',address:'address',description:'description',phone:'phone',hours:'hours',website:'website'};
- Object.keys(fields).forEach(key=>{
-   const value=params.get(key);
-   if(value && value.length<=300) document.getElementById(fields[key]).textContent=value;
- });
- const rawPhone=(params.get('phone')||'').replace(/\D/g,'');
- if(/^\d{10,12}$/.test(rawPhone)){
-   document.getElementById('callLink').href='tel:'+rawPhone;
-   document.getElementById('waLink').href='https://wa.me/'+rawPhone;
- }
- const serviceText=params.get('services');
- if(serviceText){
-   const list=serviceText.split(',').map(x=>x.trim()).filter(x=>x && x.length<=50).slice(0,8);
-   const container=document.getElementById('services');
-   container.replaceChildren();
-   list.forEach(item=>{const span=document.createElement('span');span.className='service';span.textContent=item;container.appendChild(span);});
- }
-})();
+
+<footer>© <span id="year"></span> Meera Local · Local Business & Vyapar Network</footer>
+
+<script type="module">
+import { db, doc, getDoc } from "./firebase.js";
+
+const loading=document.getElementById("loading");
+const profile=document.getElementById("profile");
+const errorBox=document.getElementById("error");
+document.getElementById("year").textContent=new Date().getFullYear();
+
+function text(id,value){document.getElementById(id).textContent=value||"Not provided";}
+function phoneForLink(value){
+  const digits=String(value||"").replace(/\D/g,"");
+  if(digits.length===10)return "91"+digits;
+  if(digits.length===12&&digits.startsWith("91"))return digits;
+  return "";
+}
+
+async function loadProfile(){
+  const id=new URLSearchParams(location.search).get("id");
+  if(!id){loading.style.display="none";errorBox.style.display="block";return;}
+
+  try{
+    const snap=await getDoc(doc(db,"localBusinesses",id));
+    if(!snap.exists()||snap.data().status!=="approved"){
+      loading.style.display="none";errorBox.style.display="block";return;
+    }
+
+    const b=snap.data();
+    text("category",b.category||"Local Business");
+    text("name",b.businessName||"Business");
+    text("area",b.area?`📍 ${b.area}`:"");
+    text("description",b.description||"Is business ne apni details provide nahi ki hain.");
+    text("address",b.address);
+    text("businessType",b.category||"Local Business");
+
+    const actions=document.getElementById("actions");
+    const phone=phoneForLink(b.phone);
+    const whatsapp=phoneForLink(b.whatsapp||b.phone);
+    actions.innerHTML="";
+    if(phone){
+      const a=document.createElement("a");
+      a.className="btn call";a.href="tel:+"+phone;a.textContent="📞 Call";
+      actions.appendChild(a);
+    }
+    if(whatsapp){
+      const a=document.createElement("a");
+      a.className="btn wa";a.target="_blank";a.rel="noopener noreferrer";
+      a.href="https://wa.me/"+whatsapp;a.textContent="WhatsApp";
+      actions.appendChild(a);
+    }
+
+    loading.style.display="none";
+    profile.hidden=false;
+  }catch(err){
+    console.error("Profile load failed:",err);
+    loading.style.display="none";
+    errorBox.style.display="block";
+  }
+}
+loadProfile();
 </script>
 </body>
 </html>
